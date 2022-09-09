@@ -104,16 +104,6 @@ class NativeSvg extends Component<IContentLoaderProps> {
     return (
       <Svg style={svgStyle} {...props}>
         {beforeMask && isValidElement(beforeMask) ? beforeMask : null}
-
-        <Rect
-          x="0"
-          y="0"
-          width="100%"
-          height="100%"
-          fill={`url(#${this.idClip})`}
-          clipPath={`url(#${this.idGradient})`}
-        />
-
         <Defs>
           <ClipPath id={this.idGradient}>{children}</ClipPath>
 
@@ -129,6 +119,15 @@ class NativeSvg extends Component<IContentLoaderProps> {
             <Stop offset={1} stopColor={backgroundColor} />
           </AnimatedLinearGradient>
         </Defs>
+
+        <Rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          fill={`url(#${this.idClip})`}
+          clipPath={`url(#${this.idGradient})`}
+        />
       </Svg>
     )
   }
